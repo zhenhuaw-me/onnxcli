@@ -1,6 +1,7 @@
 import shlex
 import subprocess as sp
 
+
 def test_dispatcher():
     cmd = 'ls ..'
     sp.run(shlex.split(cmd), shell=True, check=True, capture_output=True)
@@ -11,7 +12,7 @@ def test_dispatcher():
         if p.poll() is not None:
             break
         if output:
-            print (output.strip())
+            print(output.strip())
     retval = p.poll()
     assert retval == 0
 

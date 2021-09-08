@@ -14,7 +14,8 @@ def infer_shape(args):
 
 
 def infer_shape_arg(subparsers):
-    shape_parser = subparsers.add_parser('infershape', help="Run Shape Inference on given ONNX model")
+    shape_parser = subparsers.add_parser('infershape',
+                                         help="Run Shape Inference on given ONNX model")
     shape_parser.add_argument('input_model', type=str, help="The input ONNX model")
     shape_parser.add_argument('-o', required=False, type=str, help="The output ONNX model")
     shape_parser.set_defaults(func=infer_shape)
