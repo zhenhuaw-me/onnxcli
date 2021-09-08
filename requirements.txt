@@ -1,0 +1,5 @@
+build
+coverage
+flake8
+pytest
+twine

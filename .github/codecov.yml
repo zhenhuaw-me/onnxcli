@@ -1,0 +1,11 @@
+coverage:
+  status:
+    project:
+      default:
+        threshold: 1%
+        target: auto
+        base: auto
+        branches:
+          - master
+        only_pulls: false
+
