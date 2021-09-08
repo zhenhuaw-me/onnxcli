@@ -1,2 +1,2 @@
-# onnx-cli
-Light weight command line toolbox of ONNX
+Lightweight Command Line Toolbox for ONNX
+=========================================
