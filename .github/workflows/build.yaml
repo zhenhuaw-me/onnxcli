@@ -24,13 +24,13 @@ jobs:
       shell: bash
 
     - name: Install package
-      run: pip install -U assets/dist/onnx-cli-*.whl
+      run: pip install -U assets/dist/onnxcli-*.whl
 
     - name: Install development dependencies
       run: pip install -r requirements.txt
 
     - name: Testing (collecting coverage data)
-      run: coverage run --source=./onnx-cli -m pytest
+      run: coverage run --source=./onnxcli -m pytest
 
     - name: Upload coverage report
       continue-on-error: true
