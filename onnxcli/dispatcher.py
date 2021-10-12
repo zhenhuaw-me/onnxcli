@@ -1,12 +1,24 @@
 """The main command dispatcher"""
 
 import argparse
+import sys
+import logging
+
 from onnxcli import __doc__ as DESCRIPTION
 from onnxcli.infer_shape import InferShapeCmd
 from onnxcli.extract import ExtractCmd
 
 
+logger = logging.getLogger('onnxcli')
+
+
 def dispatch():
+    dispatch_core(sys.argv[1:])
+
+
+def dispatch_core(*raw_args):
+    logger.debug("Running {}".format(*raw_args))
+
     parser = argparse.ArgumentParser(description=DESCRIPTION)
     subparsers = parser.add_subparsers(title='subcommands')
 
@@ -14,5 +26,5 @@ def dispatch():
     InferShapeCmd(subparsers)
     ExtractCmd(subparsers)
 
-    args = parser.parse_args()
+    args = parser.parse_args(*raw_args)
     args.func(args)
