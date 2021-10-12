@@ -1,5 +1,7 @@
 build
 coverage
 flake8
+numpy
+onnx
 pytest
 twine
