@@ -3,6 +3,7 @@
 import argparse
 from onnxcli import __doc__ as DESCRIPTION
 from onnxcli.infer_shape import InferShapeCmd
+from onnxcli.extract import ExtractCmd
 
 
 def dispatch():
@@ -11,6 +12,7 @@ def dispatch():
 
     # collect commands
     InferShapeCmd(subparsers)
+    ExtractCmd(subparsers)
 
     args = parser.parse_args()
     args.func(args)
