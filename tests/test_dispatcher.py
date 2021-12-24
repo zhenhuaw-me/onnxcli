@@ -13,6 +13,10 @@ cmds = [
     'infershape ./assets/tests/conv.float32.onnx -o shape.onnx',
     'extract ./assets/tests/conv.float32.onnx extract.onnx -i input -o output',
     'inspect ./assets/tests/conv.float32.onnx --meta --node --tensor',
+    'inspect ./assets/tests/conv.float32.onnx --node --indices 0 --detail',
+    'inspect ./assets/tests/conv.float32.onnx --node --names output --detail',
+    'inspect ./assets/tests/conv.float32.onnx --tensor --indices 0 --detail',
+    'inspect ./assets/tests/conv.float32.onnx --tensor --names output --detail',
 ]
 
 

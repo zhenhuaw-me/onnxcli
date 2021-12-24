@@ -3,7 +3,7 @@ default: test
 build: clean
 	./scripts/build-wheel.sh
 
-test: build install
+test: install
 	python3 ./tests/test_dispatcher.py
 
 sanity:
@@ -13,8 +13,8 @@ sanity:
 setup:
 	pip3 install -r ./requirements.txt
 
-install:
-	pip3 install ./assets/dist/onnxcli-0.0.1-py3-none-any.whl
+install: clean build
+	pip3 install --force-reinstall ./assets/dist/onnxcli-0.0.1-py3-none-any.whl
 
 clean:
 	-rm ./assets/dist/*
