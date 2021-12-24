@@ -5,7 +5,7 @@ logger = logging.getLogger('onnxcli')
 
 
 class InspectCmd(SubCmd):
-    """Prints the statistic of nodes tensors of the given model"""
+    """Prints the information of nodes tensors of the given model"""
 
     subcmd = 'inspect'
 

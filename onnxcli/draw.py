@@ -59,20 +59,20 @@ class DrawCmd(SubCmd):
         for node in m.graph.node:
             nname = fixname(node.name)
             node_names.add(nname)
-            dot_str += '"{}" [label="{}\\n<{}>" fonstsize=16 shape=ellipse];\n'.format(nname, nname, node.op_type)
+            dot_str += '"{}" [label="{}\\n<{}>" fonstsize=16 shape=oval];\n'.format(nname, nname, node.op_type)
             for iname in node.input:
                 dot_str += '  "{}" -> "{}";\n'.format(fixname(iname), nname)
 
         # tensors
         for tensor in m.graph.initializer:
             tname = fixname(tensor.name)
-            dot_str += '"{}" [label="{}\\n{}, {}" fonstsize=10 style=rounded shape=rect];\n'.format(
+            dot_str += '"{}" [label="{}\\n{}, {}" fonstsize=10 style=rounded shape=rectangle];\n'.format(
                 tname, tname, dtype(tensor.data_type), tensor.dims
             )
         for tensor in m.graph.value_info:
             tname = fixname(tensor.name)
             if tname not in node_names:
-                dot_str += '"{}" [label="{}\\n{}, {}" fonstsize=10 shape=box];\n'.format(
+                dot_str += '"{}" [label="{}\\n{}, {}" fonstsize=10 shape=rectangle];\n'.format(
                     tname, tname, dtype(tensor.type.tensor_type.elem_type), shape(tensor.type.tensor_type.shape)
                 )
 
