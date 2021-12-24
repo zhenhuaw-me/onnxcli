@@ -8,6 +8,7 @@ from onnxcli import __doc__ as DESCRIPTION
 from onnxcli.infer_shape import InferShapeCmd
 from onnxcli.extract import ExtractCmd
 from onnxcli.inspect import InspectCmd
+from onnxcli.draw import DrawCmd
 
 
 logger = logging.getLogger('onnxcli')
@@ -27,6 +28,7 @@ def dispatch_core(*raw_args):
     InferShapeCmd(subparsers)
     ExtractCmd(subparsers)
     InspectCmd(subparsers)
+    DrawCmd(subparsers)
 
     args = parser.parse_args(*raw_args)
     args.func(args)
