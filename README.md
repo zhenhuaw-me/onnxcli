@@ -141,6 +141,26 @@ Here is a Convolution node example.
 ![conv](assets/conv.svg)
 
 
+## Contributing
+
+Welcome to contribute new commands or enhance them.
+Let's make our life easier together.
+
+<details><summary>Click here to check the simple workflow.</summary>
+1. Starting with GitHub Codespace or clone locally.
+  * `make setup` to config the dependencies (or `pip install -r ./requirements.txt` if you prefer).
+2. Create a new subcommand
+  * Starting by copying and modifying [infershape](./onnxcli/infer_shape.py).
+  * Register the command in the [dispatcher](./onnxcli/dispatcher.py)
+  * Create a new command line [test](./tests/test_dispatcher.py)
+  * `make test` to build and test.
+  * `make check` and `make format` to fix any code style issues.
+3. Try out, debug, commit, push, and open pull request.
+  * The code has been protected by CI. You need to get a pass before merging.
+  * Ask if any questions.
+<details>
+
+
 ## License
 
 Apache License Version 2.0.
