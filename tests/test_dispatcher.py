@@ -17,6 +17,8 @@ cmds = [
     'inspect ./assets/tests/conv.float32.onnx --node --names output --detail',
     'inspect ./assets/tests/conv.float32.onnx --tensor --indices 0 --detail',
     'inspect ./assets/tests/conv.float32.onnx --tensor --names output --detail',
+    'draw ./assets/tests/conv.float32.onnx draw.dot --type dot',
+    'draw ./assets/tests/conv.float32.onnx draw.svg',
 ]
 
 

@@ -130,3 +130,5 @@ dmypy.json
 
 # Project specific
 *.onnx
+*.dot
+*.svg
