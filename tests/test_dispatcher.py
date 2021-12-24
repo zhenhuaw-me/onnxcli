@@ -9,10 +9,11 @@ logging.basicConfig(format=fmt, level=logging.DEBUG)
 
 logger = logging.getLogger('testing')
 
-cmds = ['infershape ./assets/tests/conv.float32.onnx -o shape.onnx',
-        'extract ./assets/tests/conv.float32.onnx extract.onnx -i input -o output',
-        'inspect ./assets/tests/conv.float32.onnx --meta --node --tensor',
-        ]
+cmds = [
+    'infershape ./assets/tests/conv.float32.onnx -o shape.onnx',
+    'extract ./assets/tests/conv.float32.onnx extract.onnx -i input -o output',
+    'inspect ./assets/tests/conv.float32.onnx --meta --node --tensor',
+]
 
 
 def test_dispatch_core():

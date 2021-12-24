@@ -1,3 +1,4 @@
+black
 build
 coverage
 flake8
