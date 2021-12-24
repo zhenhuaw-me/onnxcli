@@ -22,3 +22,31 @@ class SubCmd:
         Won't be called explicitly.
         """
         raise RuntimeError("{}.run() need to be overrided!".format(self.__name__))
+
+
+def dtype(Key):
+    # sync with TensorProto.DataType of https:#github.com/onnx/onnx/blob/master/onnx/onnx.proto
+    RawMap = [
+        'UNDEFINED',
+        'FLOAT',
+        'UINT8',
+        'INT8',
+        'UINT16',
+        'INT16',
+        'INT32',
+        'INT64',
+        'STRING',
+        'BOOL',
+        'FLOAT16',
+        'DOUBLE',
+        'UINT32',
+        'UINT64',
+        'COMPLEX64',
+        'COMPLEX128',
+        'BFLOAT16',
+    ]
+    return RawMap[Key]
+
+
+def shape(ShapeProto):
+    return [d.dim_value for d in ShapeProto.dim]
