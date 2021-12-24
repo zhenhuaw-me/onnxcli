@@ -68,7 +68,6 @@ You can even dump the node attributes and tensor values with a single command.
 $ onnx inspect ./assets/tests/conv.float32.onnx --tensor --names Conv2D_bias --detail
 
 Inpect of model ./assets/tests/conv.float32.onnx
-================================================================================
   Graph name: 9
   Graph inputs: 1
   Graph outputs: 1
@@ -79,7 +78,6 @@ Inpect of model ./assets/tests/conv.float32.onnx
   Quantization in total: 0
 
 Tensor information:
---------------------------------------------------------------------------------
   Initializer "Conv2D_bias": type FLOAT, shape [16],
     float data: [0.4517577290534973, -0.014192663133144379, 0.2946248948574066, -0.9742919206619263, -1.2975586652755737, 0.7223454117774963, 0.7835700511932373, 1.7674627304077148, 1.7242872714996338, 1.1230682134628296, -0.2902531623840332, 0.2627834975719452, 1.0175092220306396, 0.5643373131752014, -0.8244842290878296, 1.2169424295425415]
 </code></pre>
@@ -90,7 +88,6 @@ Tensor information:
 $ onnx inspect ./assets/tests/conv.float32.onnx --node --indices 0 --detail
 
 Inpect of model ./assets/tests/conv.float32.onnx
-================================================================================
   Graph name: 9
   Graph inputs: 1
   Graph outputs: 1
@@ -101,7 +98,6 @@ Inpect of model ./assets/tests/conv.float32.onnx
   Quantization in total: 0
 
 Node information:
---------------------------------------------------------------------------------
   Node "output": type "Conv", inputs "['input', 'Variable/read', 'Conv2D_bias']", outputs "['output']"
     attributes: [name: "dilations"
 ints: 1
