@@ -63,26 +63,6 @@ When working on deep learning, you may like to take a look at the model.
 With `onnx inspect`, you no longer need to scroll the Netron window to look for the node.
 You can even dump the node attributes and tensor values with a single command.
 
-<details><summary>Click here to see a tensor example</summary>
-<pre><code>
-$ onnx inspect ./assets/tests/conv.float32.onnx --tensor --names Conv2D_bias --detail
-
-Inpect of model ./assets/tests/conv.float32.onnx
-  Graph name: 9
-  Graph inputs: 1
-  Graph outputs: 1
-  Nodes in total: 1
-  ValueInfo in total: 2
-  Initializers in total: 2
-  Sparse Initializers in total: 0
-  Quantization in total: 0
-
-Tensor information:
-  Initializer "Conv2D_bias": type FLOAT, shape [16],
-    float data: [0.4517577290534973, -0.014192663133144379, 0.2946248948574066, -0.9742919206619263, -1.2975586652755737, 0.7223454117774963, 0.7835700511932373, 1.7674627304077148, 1.7242872714996338, 1.1230682134628296, -0.2902531623840332, 0.2627834975719452, 1.0175092220306396, 0.5643373131752014, -0.8244842290878296, 1.2169424295425415]
-</code></pre>
-</details>
-
 <details><summary>Click here to see a node example</summary>
 <pre><code>
 $ onnx inspect ./assets/tests/conv.float32.onnx --node --indices 0 --detail
@@ -124,8 +104,42 @@ type: INTS
 </code></pre>
 </details>
 
+<details><summary>Click here to see a tensor example</summary>
+<pre><code>
+$ onnx inspect ./assets/tests/conv.float32.onnx --tensor --names Conv2D_bias --detail
+
+Inpect of model ./assets/tests/conv.float32.onnx
+  Graph name: 9
+  Graph inputs: 1
+  Graph outputs: 1
+  Nodes in total: 1
+  ValueInfo in total: 2
+  Initializers in total: 2
+  Sparse Initializers in total: 0
+  Quantization in total: 0
+
+Tensor information:
+  Initializer "Conv2D_bias": type FLOAT, shape [16],
+    float data: [0.4517577290534973, -0.014192663133144379, 0.2946248948574066, -0.9742919206619263, -1.2975586652755737, 0.7223454117774963, 0.7835700511932373, 1.7674627304077148, 1.7242872714996338, 1.1230682134628296, -0.2902531623840332, 0.2627834975719452, 1.0175092220306396, 0.5643373131752014, -0.8244842290878296, 1.2169424295425415]
+</code></pre>
+</details>
 
 ### draw
+
+`onnx draw` draws the graph in `dot`, `svg`, `png` formats.
+You may have quick view of the type and shape of the tensors that are fed to a specific node.
+You can view the model topology in image viewer of browser without waiting for the model to load.
+This is really helpful for large models.
+
+If you are viewing `svg` in browser, you can even quick search for the nodes and tensors.
+Together with [`onnx inspect`](#inspect), it will be very efficient to understand the issue you are looking into.
+
+The node are in ellipses and tensors are in rectangles where the rounded ones are initializers.
+The node type of the node and the data type and shape of the tenors are also rendered.
+Here is a Convolution node example.
+
+![conv](assets/conv.svg)
+
 
 ## License
 
