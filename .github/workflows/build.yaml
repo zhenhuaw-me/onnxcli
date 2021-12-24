@@ -27,7 +27,7 @@ jobs:
 
     - name: Install development dependencies
       run: |
-	      pip install -r requirements.txt
+        pip install -r requirements.txt
         sudo apt update
         sudo apt install -y graphviz
 
