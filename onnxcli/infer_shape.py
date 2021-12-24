@@ -11,9 +11,7 @@ class InferShapeCmd(SubCmd):
 
     def add_args(self, subparser):
         subparser.add_argument('input_path', type=str, help="The input ONNX model")
-        subparser.add_argument(
-            '-o', '--output_path', required=False, type=str, help="The output ONNX model"
-        )
+        subparser.add_argument('-o', '--output_path', required=False, type=str, help="The output ONNX model")
 
     def run(self, args):
         logger.info("Running <Shape Inference> on model {}".format(args.input_path))

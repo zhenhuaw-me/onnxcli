@@ -1,23 +1,32 @@
 default: test
 
+DIST_DIR=./assets/dist
+
 build: clean
-	./scripts/build-wheel.sh
+	pip3 install build
+	python -m build --outdir $(DIST_DIR)
+	-rm -rf ./onnxcli.egg-info
+	-rm -rf ./build
 
 test: install
 	python3 ./tests/test_dispatcher.py
 
-sanity:
-	flake8
-	black  --skip-string-normalization --line-length 100 --check .
+check:
+	pip3 install flake8 black
+	flake8 --max-line-length 120 --max-complexity 20
+	black --skip-string-normalization --line-length 120 --check .
+
+format:
+	black --skip-string-normalization --line-length 120 .
 
 setup:
 	pip3 install -r ./requirements.txt
 
 install: clean build
-	pip3 install --force-reinstall ./assets/dist/onnxcli-0.0.1-py3-none-any.whl
+	pip3 install --force-reinstall $(DIST_DIR)/onnxcli-0.0.1-py3-none-any.whl
 
 clean:
-	-rm ./assets/dist/*
+	-rm $(DIST_DIR)/*
 
 
 .PHONY: sanity setup test

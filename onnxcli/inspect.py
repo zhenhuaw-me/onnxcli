@@ -35,7 +35,7 @@ class InspectCmd(SubCmd):
             type=int,
             nargs="+",
             default=[],
-            help="Specify the indices of the node(s) or tensor(s) to inspect. Can NOT set together with --names",
+            help="Specify the indices of the node(s) or tensor(s) to inspect." " Can NOT set together with --names",
         )
         subparser.add_argument(
             '-N',
@@ -43,13 +43,14 @@ class InspectCmd(SubCmd):
             type=str,
             nargs="+",
             default=[],
-            help="Specify the names of the node(s) or tensor(s) to inspect. Can NOT set together with --indices",
+            help="Specify the names of the node(s) or tensor(s) to inspect." " Can NOT set together with --indices",
         )
         subparser.add_argument(
             '-d',
             '--detail',
             action='store_true',
-            help="Print detailed information of the nodes or tensors that specified by --indices or --names. Warning: will print the data of tensors.",
+            help="Print detailed information of the nodes or tensors that specified by --indices or --names."
+            " Warning: will print the data of tensors.",
         )
 
     def run(self, args):
@@ -65,12 +66,11 @@ class InspectCmd(SubCmd):
             raise ValueError("Can NOT set --detail without --indices or --names")
 
         import onnx
+
         try:
             onnx.checker.check_model(args.input_path)
         except Exception:
-            logger.warn(
-                "Failed to check model {}, statistic could be inaccurate!".format(args.input_path)
-            )
+            logger.warn("Failed to check model {}, statistic could be inaccurate!".format(args.input_path))
         m = onnx.load_model(args.input_path)
         g = m.graph
 
@@ -126,7 +126,7 @@ class InspectCmd(SubCmd):
             print(txt)
             if detail:
                 print("    float data: {}".format(t.float_data))
-    
+
         # print with indices
         if len(indices) > 0:
             for idx in indices:
@@ -139,7 +139,7 @@ class InspectCmd(SubCmd):
                 print_value_info(g.value_info[idx])
                 print_initializer(g.initializer[idx], detail)
             return
-        
+
         # print with names
         if len(names) > 0:
             found_any = False
@@ -199,6 +199,7 @@ class InspectCmd(SubCmd):
             return
 
         import collections
+
         ops = collections.Counter([node.op_type for node in g.node])
         for op, count in ops.most_common():
             print("  Node type \"{}\" has: {}".format(op, count))
