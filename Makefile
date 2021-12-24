@@ -16,6 +16,9 @@ check:
 	flake8 --max-line-length 120 --max-complexity 20
 	black --skip-string-normalization --line-length 120 --check .
 
+format:
+	black --skip-string-normalization --line-length 120 .
+
 setup:
 	pip3 install -r ./requirements.txt
 

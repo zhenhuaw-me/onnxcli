@@ -11,9 +11,7 @@ class ExtractCmd(SubCmd):
 
     def add_args(self, subparser):
         subparser.add_argument('input_path', type=str, help="The path to original ONNX model")
-        subparser.add_argument(
-            'output_path', type=str, help="The path to save the extracted ONNX model"
-        )
+        subparser.add_argument('output_path', type=str, help="The path to save the extracted ONNX model")
         subparser.add_argument(
             '-i',
             '--input_names',
@@ -31,6 +29,4 @@ class ExtractCmd(SubCmd):
         logger.info("Running <Model Extraction> on model {}".format(args.input_path))
         import onnx
 
-        onnx.utils.extract_model(
-            args.input_path, args.output_path, args.input_names, args.output_names
-        )
+        onnx.utils.extract_model(args.input_path, args.output_path, args.input_names, args.output_names)
