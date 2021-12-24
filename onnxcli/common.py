@@ -27,6 +27,7 @@ class SubCmd:
 def dtype(Key):
     # sync with TensorProto.DataType of https:#github.com/onnx/onnx/blob/master/onnx/onnx.proto
     RawMap = [
+        # fmt off
         'UNDEFINED',
         'FLOAT',
         'UINT8',
@@ -44,6 +45,7 @@ def dtype(Key):
         'COMPLEX64',
         'COMPLEX128',
         'BFLOAT16',
+        # fmt on
     ]
     return RawMap[Key]
 
