@@ -23,7 +23,7 @@ setup:
 	pip3 install -r ./requirements.txt
 
 install: clean build
-	pip3 install --force-reinstall $(DIST_DIR)/onnxcli-0.0.1-py3-none-any.whl
+	pip3 install --force-reinstall --no-dependencies $(DIST_DIR)/onnxcli-*-py3-none-any.whl
 
 clean:
 	-rm $(DIST_DIR)/*

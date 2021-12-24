@@ -5,7 +5,7 @@ logger = logging.getLogger('onnxcli')
 
 
 class ExtractCmd(SubCmd):
-    """Extract sub model with given input and output tensor names."""
+    """Extract sub model that is determined by given input and output tensor names."""
 
     subcmd = 'extract'
 
