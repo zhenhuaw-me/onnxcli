@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "test dispatcher",
+            "type": "python",
+            "request": "launch",
+            "program": "tests/test_dispatcher.py",
+            "console": "integratedTerminal"
+        }
+    ]
+}
