@@ -146,7 +146,7 @@ Here is a Convolution node example.
 Welcome to contribute new commands or enhance them.
 Let's make our life easier together.
 
-<details><summary>Click here to check the simple workflow.</summary>
+The workflow is pretty simple:
 1. Starting with GitHub Codespace or clone locally.
   * `make setup` to config the dependencies (or `pip install -r ./requirements.txt` if you prefer).
 2. Create a new subcommand
@@ -158,7 +158,6 @@ Let's make our life easier together.
 3. Try out, debug, commit, push, and open pull request.
   * The code has been protected by CI. You need to get a pass before merging.
   * Ask if any questions.
-<details>
 
 
 ## License
