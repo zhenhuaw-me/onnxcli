@@ -18,8 +18,7 @@ Recommand to install via [GitHub repo][github] with [virtualenv](https://virtual
 pip install git+https://github.com/jackwish/onnxcli.git
 ```
 
-<summary>Click to see alternatives
-<detail>
+<details><summary>Click to see alternatives</summary>
 1. Install via [pypi package][pypi] `pip install onnxcli`
 2. Download and add the code tree to your `$PYTHONPATH`. This is for development purpose since the command line is different.
     ```sh
@@ -27,8 +26,8 @@ pip install git+https://github.com/jackwish/onnxcli.git
     export PYTHONPATH=$(pwd)/onnxcli:${PYTHONPATH}
     python onnxcli/cli/dispatcher.py <more args>
     ```
-</detail>
-</summary>
+</details>
+
 
 The [`onnx draw`](#draw) requires [`dot` command (graphviz)](https://graphviz.org/) to be avaiable on your machine.
 It can be installed by command as below on Ubuntu/Debian.
@@ -65,8 +64,7 @@ When working on deep learning, you may like to take a look at the model.
 
 With `onnx inspect`, you no longer need to scroll the Netron window to look for the node.
 You can even dump the node attributes and tensor values with a single command.
-<summary>Click here to see a tensor example
-<detail>
+<details><summary>Click here to see a tensor example</summary>
 ```
 $ onnx inspect ./assets/tests/conv.float32.onnx --tensor --names Conv2D_bias --detail
 
@@ -86,11 +84,10 @@ Tensor information:
   Initializer "Conv2D_bias": type FLOAT, shape [16],
     float data: [0.4517577290534973, -0.014192663133144379, 0.2946248948574066, -0.9742919206619263, -1.2975586652755737, 0.7223454117774963, 0.7835700511932373, 1.7674627304077148, 1.7242872714996338, 1.1230682134628296, -0.2902531623840332, 0.2627834975719452, 1.0175092220306396, 0.5643373131752014, -0.8244842290878296, 1.2169424295425415]
 ```
-</detail>
-</summary>
+</details>
 
-<summary>Click here to see a node example
-<detail>
+<details><summary>Click here to see a node example</summary>
+
 ```
 $ onnx inspect ./assets/tests/conv.float32.onnx --node --indices 0 --detail
 
@@ -131,8 +128,8 @@ ints: 1
 type: INTS
 ]
 ```
-</detail>
-</summary>
+</details>
+
 
 ### draw
 
