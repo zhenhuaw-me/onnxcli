@@ -1,14 +1,13 @@
-Lightweight Command Line Toolbox for ONNX
-=========================================
+ONNX Command Line Toolbox
+=========================
 
 [![Build and Test](https://github.com/jackwish/onnxcli/workflows/Build%20and%20Test/badge.svg)](https://github.com/jackwish/onnxcli/actions?query=workflow%3A%22Build+and+Test%22)
 [![Sanity](https://github.com/jackwish/onnxcli/workflows/Sanity/badge.svg)](https://github.com/jackwish/onnxcli/actions?query=workflow%3ASanity)
 [![Coverage](https://codecov.io/gh/jackwish/onnxcli/branch/master/graph/badge.svg)](https://codecov.io/gh/jackwish/onnxcli)
 
 
-* Aims to improve your development or usage experience of ONNX.
-* Serves as a CLI wrapper for most cases.
-* Use it like `onnx infershape /path/to/model.onnx`.
+* Aims to improve your experience of investigating ONNX models.
+* Use it like `onnx infershape /path/to/model.onnx`. (See the [usage section](#usage) for more.)
 
 
 ## Installation
@@ -18,7 +17,7 @@ Recommand to install via [GitHub repo][github] with [virtualenv](https://virtual
 pip install git+https://github.com/jackwish/onnxcli.git
 ```
 
-Two alternative ways of installing the package are:
+Two alternative ways of installing are:
 1. Install via [pypi package][pypi] `pip install onnxcli`
 2. Download and add the code tree to your `$PYTHONPATH`. This is for development purpose since the command line is different.
     ```
@@ -30,38 +29,38 @@ Two alternative ways of installing the package are:
 The [`onnx draw`](#draw) requires [`dot` command (graphviz)](https://graphviz.org/) to be avaiable on your machine.
 It can be installed by command as below on Ubuntu/Debian.
 ```
-sudo install -y graphviz
+sudo apt install -y graphviz
 ```
 
 
 ## Usage
 
 Once installed, the `onnx` and `onnxcli` commands are avaiable on your machine.
-And you can play with commands such as `onnx infershape /path/to/model.onnx`.
+You can play with commands such as `onnx infershape /path/to/model.onnx`.
 The sub commands of this tool are as below.
-_This tool is under construction, check the online help with `onnx --help` and `onnx <subcmd> --help`._
+_This tool is under construction, check the online help with `onnx --help` and `onnx <subcmd> --help` for latest usage._
 
 ### infershape
 
 `onnx infershape` performs [shape inference](https://github.com/onnx/onnx/blob/master/docs/ShapeInference.md) of the ONNX model.
 It's an CLI wrapper of [`onnx.shape_inference`](https://github.com/onnx/onnx/blob/master/docs/PythonAPIOverview.md#running-shape-inference-on-an-onnx-model).
-You will find it useful to generate shape information for the models that are extracted by [`onnx extract`](#extract)
+You will find it useful to generate shape information for the models that are extracted by [`onnx extract`](#extract).
 
 ### extract
 
-`onnx extract` extracts the sub model that are determined by the names of the input and output tensor of the it from the original model.
-It's a CLI wrapper of [`onnx.utils.extract_model`](https://github.com/onnx/onnx/blob/master/docs/PythonAPIOverview.md#extracting-sub-model-with-inputs-outputs-tensor-names)
+`onnx extract` extracts the sub model that is determined by the names of the input and output tensor of the subgraph from the original model.
+It's a CLI wrapper of [`onnx.utils.extract_model`](https://github.com/onnx/onnx/blob/master/docs/PythonAPIOverview.md#extracting-sub-model-with-inputs-outputs-tensor-names) (which I authorized in the ONNX repo).
 
 ### inspect
 
-`onnx inspect` gives you a quick view of the information of the given model.
+`onnx inspect` gives you quick view of the information of the given model.
 It's inspired by [the tf-onnx tool](https://github.com/onnx/tensorflow-onnx/blob/master/tools/dump-onnx.py).
 
-When working on deep learning, you may like to take a look at the model.
+When working on deep learning, you may like to take a look at what's inside the model.
 [Netron](https://github.com/lutzroeder/netron) is powerful but doesn't provide fine-grain view.
 
-With `onnx inspect`, you no longer need to scroll the Netron window to look for the node.
-You can even dump the node attributes and tensor values with a single command.
+With `onnx inspect`, you no longer need to scroll the Netron window to look for nodes or tensors.
+Instead, you can even dump the node attributes and tensor values with a single command.
 
 <details><summary>Click here to see a node example</summary>
 <pre><code>
@@ -127,9 +126,9 @@ Tensor information:
 ### draw
 
 `onnx draw` draws the graph in `dot`, `svg`, `png` formats.
-You may have quick view of the type and shape of the tensors that are fed to a specific node.
-You can view the model topology in image viewer of browser without waiting for the model to load.
-This is really helpful for large models.
+It gives you quick view of the type and shape of the tensors that are fed to a specific node.
+You can view the model topology in image viewer of browser without waiting for the model to load,
+which I found is really helpful for large models.
 
 If you are viewing `svg` in browser, you can even quick search for the nodes and tensors.
 Together with [`onnx inspect`](#inspect), it will be very efficient to understand the issue you are looking into.
