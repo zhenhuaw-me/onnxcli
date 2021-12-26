@@ -62,6 +62,7 @@ class DrawCmd(SubCmd):
         # key used as graphviz node key to build graph, name used as graphviz node label
         def tensor_key(name):
             return 'tensor_' + fixname(name)
+
         def node_key(name):
             return 'node_' + fixname(name)
 
@@ -85,7 +86,10 @@ class DrawCmd(SubCmd):
             )
         for tensor in m.graph.value_info:
             dot_str += '"{}" [label="{}\\n{}, {}" fonstsize=10 shape=rectangle];\n'.format(
-                tensor_key(tensor.name), fixname(tensor.name), dtype(tensor.type.tensor_type.elem_type), shape(tensor.type.tensor_type.shape)
+                tensor_key(tensor.name),
+                fixname(tensor.name),
+                dtype(tensor.type.tensor_type.elem_type),
+                shape(tensor.type.tensor_type.shape),
             )
 
         dot_str += "}\n"
