@@ -2,7 +2,7 @@ coverage:
   status:
     project:
       default:
-        threshold: 2%
+        threshold: 5%
         target: auto
         base: auto
         branches:
