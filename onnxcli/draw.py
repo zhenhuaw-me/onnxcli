@@ -54,33 +54,39 @@ class DrawCmd(SubCmd):
         logger.debug("Generating graphviz string from {}".format(input_path))
         import onnx
 
-        m = onnx.load_model(input_path)
-        dot_str = "digraph onnxcli {\n"
-
         # handle chars that are key in graphviz
         def fixname(name):
             return name.replace('\\', '\\\\').replace(':', '\\:')
 
-        node_names = set()
+        # sometimes, a tensor the same name as a node, which will cause issue when rendering the graph
+        # key used as graphviz node key to build graph, name used as graphviz node label
+        def tensor_key(name):
+            return 'tensor_' + fixname(name)
+        def node_key(name):
+            return 'node_' + fixname(name)
+
+        m = onnx.load_model(input_path)
+        dot_str = "digraph onnxcli {\n"
+
+        # nodes
         for node in m.graph.node:
             nname = fixname(node.name)
-            node_names.add(nname)
-            dot_str += '"{}" [label="{}\\n<{}>" fonstsize=16 shape=oval];\n'.format(nname, nname, node.op_type)
+            nkey = node_key(node.name)
+            dot_str += '"{}" [label="{}\\n<{}>" fonstsize=16 shape=oval];\n'.format(nkey, nname, node.op_type)
             for iname in node.input:
-                dot_str += '  "{}" -> "{}";\n'.format(fixname(iname), nname)
+                dot_str += '  "{}" -> "{}";\n'.format(tensor_key(iname), nkey)
+            for oname in node.output:
+                dot_str += '  "{}" -> "{}";\n'.format(nkey, tensor_key(oname))
 
         # tensors
         for tensor in m.graph.initializer:
-            tname = fixname(tensor.name)
             dot_str += '"{}" [label="{}\\n{}, {}" fonstsize=10 style=rounded shape=rectangle];\n'.format(
-                tname, tname, dtype(tensor.data_type), tensor.dims
+                tensor_key(tensor.name), fixname(tensor.name), dtype(tensor.data_type), tensor.dims
             )
         for tensor in m.graph.value_info:
-            tname = fixname(tensor.name)
-            if tname not in node_names:
-                dot_str += '"{}" [label="{}\\n{}, {}" fonstsize=10 shape=rectangle];\n'.format(
-                    tname, tname, dtype(tensor.type.tensor_type.elem_type), shape(tensor.type.tensor_type.shape)
-                )
+            dot_str += '"{}" [label="{}\\n{}, {}" fonstsize=10 shape=rectangle];\n'.format(
+                tensor_key(tensor.name), fixname(tensor.name), dtype(tensor.type.tensor_type.elem_type), shape(tensor.type.tensor_type.shape)
+            )
 
         dot_str += "}\n"
         return dot_str
