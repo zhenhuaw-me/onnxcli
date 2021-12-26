@@ -9,7 +9,7 @@ logger = logging.getLogger('onnxcli')
 
 class ExtractCmd(SubCmd):
     """Extract sub model that is determined by given input and output tensor names.
-    
+
     The sub-model is defined by the names of the input and output tensors *exactly*.
     Note: For control-flow operators, e.g. If and Loop, the _boundary of sub-model_,
     which is defined by the input and output tensors, should not _cut through_ the
@@ -115,8 +115,8 @@ class Extractor:
 
         initializer = [self.wmap[t] for t in self.wmap.keys() if t in all_tensors_name]
         value_info = [self.vimap[t] for t in self.vimap.keys() if t in all_tensors_name]
-        assert(len(self.graph.sparse_initializer) == 0)
-        assert(len(self.graph.quantization_annotation) == 0)
+        assert len(self.graph.sparse_initializer) == 0
+        assert len(self.graph.quantization_annotation) == 0
         return (initializer, value_info)
 
     def _make_model(self, nodes, inputs, outputs, initializer, value_info):
