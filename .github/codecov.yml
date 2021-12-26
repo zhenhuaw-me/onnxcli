@@ -2,10 +2,10 @@ coverage:
   status:
     project:
       default:
-        threshold: 1%
+        threshold: 2%
         target: auto
         base: auto
         branches:
           - master
-        only_pulls: false
+        only_pulls: true
 

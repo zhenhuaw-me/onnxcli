@@ -1,8 +1,9 @@
 ONNX Command Line Toolbox
 =========================
 
-[![Build and Test](https://github.com/jackwish/onnxcli/workflows/Build%20and%20Test/badge.svg)](https://github.com/jackwish/onnxcli/actions?query=workflow%3A%22Build+and+Test%22)
-[![Sanity](https://github.com/jackwish/onnxcli/workflows/Sanity/badge.svg)](https://github.com/jackwish/onnxcli/actions?query=workflow%3ASanity)
+[![Build and Test](https://github.com/jackwish/onnxcli/workflows/Build%20and%20Test/badge.svg)](https://github.com/jackwish/onnxcli/actions/workflows/build.yml)
+[![Sanity](https://github.com/jackwish/onnxcli/workflows/Sanity/badge.svg)](https://github.com/jackwish/onnxcli/actions/workflows/sanity.yml)
+[![CodeQL](https://github.com/jackwish/onnxcli/workflows/CodeQL/badge.svg](https://github.com/jackwish/onnxcli/actions/workflows/codeql-analysis.yml)
 [![Coverage](https://codecov.io/gh/jackwish/onnxcli/branch/master/graph/badge.svg)](https://codecov.io/gh/jackwish/onnxcli)
 
 
@@ -26,8 +27,7 @@ _Two alternative ways are:_
     python onnxcli/cli/dispatcher.py <more args>
     ```
 
-The [`onnx draw`](#draw) requires [`dot` command (graphviz)](https://graphviz.org/) to be avaiable on your machine.
-It can be installed by command as below on Ubuntu/Debian.
+The [`onnx draw`](#draw) requires [`dot` command (graphviz)](https://graphviz.org/) to be avaiable on your machine - which can be installed by command as below on Ubuntu/Debian.
 ```
 sudo apt install -y graphviz
 ```
