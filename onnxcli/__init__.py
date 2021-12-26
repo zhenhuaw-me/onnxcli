@@ -1,4 +1,4 @@
-"""Lightweight Command Line Toolbox for ONNX"""
+"""ONNX Command Line Toolbox"""
 
 # package metadata
 __name__ = 'onnxcli'

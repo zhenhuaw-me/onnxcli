@@ -60,7 +60,7 @@ When working on deep learning, you may like to take a look at what's inside the 
 [Netron](https://github.com/lutzroeder/netron) is powerful but doesn't provide fine-grain view.
 
 With `onnx inspect`, you no longer need to scroll the Netron window to look for nodes or tensors.
-Instead, you can even dump the node attributes and tensor values with a single command.
+Instead, you can dump the node attributes and tensor values with a single command.
 
 <details><summary>Click here to see a node example</summary>
 <pre><code>

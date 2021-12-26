@@ -8,7 +8,13 @@ logger = logging.getLogger('onnxcli')
 
 
 class DrawCmd(SubCmd):
-    """Draw the graph with given ONNX model. Save you from Netron."""
+    """Draw the graph topology in [svg, dot, png] formats of the given ONNX model.
+
+    Give you quick view of the attributes of the tensors and nodes in addition.
+    In the figure the node is ellipse and tensor is rectangle (the rounded ones are initializers).
+    The generated figures can be viewed in browser or image viewer without waiting for the model to load.
+    It's really hepful for when investigating large models - save you from Netron.
+    """
 
     subcmd = 'draw'
 
