@@ -3,7 +3,7 @@ ONNX Command Line Toolbox
 
 [![Build and Test](https://github.com/jackwish/onnxcli/workflows/Build%20and%20Test/badge.svg)](https://github.com/jackwish/onnxcli/actions/workflows/build.yml)
 [![Sanity](https://github.com/jackwish/onnxcli/workflows/Sanity/badge.svg)](https://github.com/jackwish/onnxcli/actions/workflows/sanity.yml)
-[![CodeQL](https://github.com/jackwish/onnxcli/workflows/CodeQL/badge.svg](https://github.com/jackwish/onnxcli/actions/workflows/codeql-analysis.yml)
+[![CodeQL](https://github.com/jackwish/onnxcli/workflows/CodeQL/badge.svg)](https://github.com/jackwish/onnxcli/actions/workflows/codeql-analysis.yml)
 [![Coverage](https://codecov.io/gh/jackwish/onnxcli/branch/master/graph/badge.svg)](https://codecov.io/gh/jackwish/onnxcli)
 
 
