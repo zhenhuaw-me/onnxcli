@@ -2,8 +2,8 @@ class SubCmd:
     subcmd = None
 
     def __init__(self, subparsers):
-        if not self.subcmd:
-            raise RuntimeError("subcmd must be valid")
+        if self.subcmd is None:
+            raise RuntimeError("subcmd must be provided!")
 
         subparser = subparsers.add_parser(self.subcmd, help=self.__doc__)
         self.add_args(subparser)

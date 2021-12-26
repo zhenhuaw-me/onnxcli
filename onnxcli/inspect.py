@@ -6,7 +6,7 @@ logger = logging.getLogger('onnxcli')
 
 class InspectCmd(SubCmd):
     """Prints the information of nodes tensors of the given model.
-    
+
     When working on deep learning, you may like to take a look at what's inside the model.
     You no longer need to scroll the Netron window to look for nodes or tensors.
     Instead, you can dump the node attributes and tensor values with a single command.
