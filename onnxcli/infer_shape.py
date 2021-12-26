@@ -5,7 +5,7 @@ logger = logging.getLogger('onnxcli')
 
 
 class InferShapeCmd(SubCmd):
-    """Run Shape Inference on given ONNX model"""
+    """Run Shape Inference on given ONNX model."""
 
     subcmd = 'infershape'
 

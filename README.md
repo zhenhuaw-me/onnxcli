@@ -12,12 +12,12 @@ ONNX Command Line Toolbox
 
 ## Installation
 
-Recommand to install via [GitHub repo][github] with [virtualenv](https://virtualenv.pypa.io)
+Recommand to install via [GitHub repo][github] for the latest functionality.
 ```
 pip install git+https://github.com/jackwish/onnxcli.git
 ```
 
-Two alternative ways of installing are:
+_Two alternative ways are:_
 1. Install via [pypi package][pypi] `pip install onnxcli`
 2. Download and add the code tree to your `$PYTHONPATH`. This is for development purpose since the command line is different.
     ```
@@ -37,8 +37,10 @@ sudo apt install -y graphviz
 
 Once installed, the `onnx` and `onnxcli` commands are avaiable on your machine.
 You can play with commands such as `onnx infershape /path/to/model.onnx`.
-The sub commands of this tool are as below.
-_This tool is under construction, check the online help with `onnx --help` and `onnx <subcmd> --help` for latest usage._
+The general format is `onnx <sub command> <dedicated arguments ...>`.
+The sub commands are as sections below.
+
+_Check the online help with `onnx --help` and `onnx <subcmd> --help` for latest usage._
 
 ### infershape
 
