@@ -4,5 +4,6 @@ coverage
 flake8
 numpy
 onnx
+onnxoptimizer
 pytest
 twine

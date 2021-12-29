@@ -141,6 +141,10 @@ Here is a Convolution node example.
 
 ![conv](assets/conv.svg)
 
+### optimize
+
+`onnx optimize` optimizes the input model with [ONNX Optimizer](https://github.com/onnx/optimizer).
+
 
 ## Contributing
 

@@ -24,13 +24,13 @@ class ExtractCmd(SubCmd):
         subparser.add_argument(
             '-i',
             '--input_names',
-            nargs="+",
+            nargs='+',
             help="The names of the input tensors that to be extracted.",
         )
         subparser.add_argument(
             '-o',
             '--output_names',
-            nargs="+",
+            nargs='+',
             help="The names of the output tensors that to be extracted.",
         )
 
