@@ -13,7 +13,7 @@ class OptimizeCmd(SubCmd):
     def add_args(self, subparser):
         subparser.add_argument('input_path', type=str, help="The input ONNX model")
         subparser.add_argument('output_path', type=str, help="The output ONNX model")
-        subparser.add_argument('-p', '--passes', type=str, nargs="+", help="The passes to run with the optimizer")
+        subparser.add_argument('-p', '--passes', type=str, nargs="+", default=[], help="The passes to run with the optimizer")
 
     def run(self, args):
         logger.info("Running <Optimization> on model {}".format(args.input_path))
