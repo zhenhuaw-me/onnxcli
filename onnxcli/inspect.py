@@ -179,7 +179,7 @@ class InspectCmd(SubCmd):
             txt += " inputs \"{}\",".format(n.input)
             txt += " outputs \"{}\"".format(n.output)
             print(txt)
-            if detail:
+            if detail and len(n.attribute) > 0:
                 print("    attributes: {}".format(n.attribute))
 
         # print with indices
@@ -211,4 +211,4 @@ class InspectCmd(SubCmd):
 
         print("-" * 80)
         for node in g.node:
-            print(print_node(node, False))
+            print_node(node, False)
