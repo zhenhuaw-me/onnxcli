@@ -42,7 +42,10 @@ class ExtractCmd(SubCmd):
             raise ValueError("Output model path shall not be empty!")
         if len(args.output_names) == 0:
             raise ValueError("Output tensor names shall not be empty!")
-        onnx.checker.check_model(args.input_path)
+        try:
+            onnx.checker.check_model(args.input_path)
+        except Exception as e:
+            logger.warn("Input model invalid, the resulted model can be invalid too!\n {}".format(e))
 
         model = onnx.load(args.input_path)
         e = Extractor(model)
