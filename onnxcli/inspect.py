@@ -1,4 +1,5 @@
 import logging
+import onnx
 from onnxcli.common import SubCmd, dtype, shape
 
 logger = logging.getLogger('onnxcli')
@@ -69,8 +70,6 @@ class InspectCmd(SubCmd):
             raise ValueError("Can NOT set --indices or --names without --node or --tensor")
         if (not has_indices and not has_names) and args.detail:
             raise ValueError("Can NOT set --detail without --indices or --names")
-
-        import onnx
 
         try:
             onnx.checker.check_model(args.input_path)

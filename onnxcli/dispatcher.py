@@ -10,6 +10,7 @@ from onnxcli.extract import ExtractCmd
 from onnxcli.inspect import InspectCmd
 from onnxcli.draw import DrawCmd
 from onnxcli.optimize import OptimizeCmd
+from onnxcli.convert import ConvertCmd
 
 
 logger = logging.getLogger('onnxcli')
@@ -31,6 +32,7 @@ def dispatch_core(*raw_args):
     InspectCmd(subparsers)
     DrawCmd(subparsers)
     OptimizeCmd(subparsers)
+    ConvertCmd(subparsers)
 
     args = parser.parse_args(*raw_args)
     args.func(args)

@@ -2,6 +2,7 @@ import logging
 import tempfile
 import subprocess
 import shlex
+import onnx
 from onnxcli.common import SubCmd, dtype, shape
 
 logger = logging.getLogger('onnxcli')
@@ -52,7 +53,6 @@ class DrawCmd(SubCmd):
 
     def gen_graphviz_str(self, input_path):
         logger.debug("Generating graphviz string from {}".format(input_path))
-        import onnx
 
         # handle chars that are key in graphviz
         def fixname(name):

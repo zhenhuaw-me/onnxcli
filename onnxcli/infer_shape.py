@@ -1,4 +1,5 @@
 import logging
+import onnx
 from onnxcli.common import SubCmd
 
 logger = logging.getLogger('onnxcli')
@@ -15,7 +16,6 @@ class InferShapeCmd(SubCmd):
 
     def run(self, args):
         logger.info("Running <Shape Inference> on model {}".format(args.input_path))
-        import onnx
 
         if args.output_path:
             onnx.shape_inference.infer_shapes_path(args.input_path, args.output_path)
