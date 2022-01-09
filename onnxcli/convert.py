@@ -14,8 +14,12 @@ class ConvertCmd(SubCmd):
     def add_args(self, subparser):
         subparser.add_argument('input_path', type=str, help="The path to the input model")
         subparser.add_argument('output_path', type=str, help="The path to the output model")
-        subparser.add_argument('-i', '--input_type', type=str, default='onnx', choices=['onnx'], help="The type of the input model")
-        subparser.add_argument('-o', '--output_type', type=str, default='onnx', choices=['json'], help="The type of the output model")
+        subparser.add_argument(
+            '-i', '--input_type', type=str, default='onnx', choices=['onnx'], help="The type of the input model"
+        )
+        subparser.add_argument(
+            '-o', '--output_type', type=str, default='onnx', choices=['json'], help="The type of the output model"
+        )
 
     def run(self, args):
         logger.info("Running <Converter> on model {}".format(args.input_path))
@@ -25,13 +29,16 @@ class ConvertCmd(SubCmd):
         if args.input_type == 'onnx' and args.output_type == 'json':
             onnx2json(args.input_path, args.output_path)
         else:
-            raise NotImplementedError("Conversion from {} to {} is not supported yet.".format(args.input_type, args.output_type))
+            raise NotImplementedError(
+                "Conversion from {} to {} is not supported yet.".format(args.input_type, args.output_type)
+            )
 
 
 def onnx2json(input_path, output_path):
     """Convert the given ONNX model to JSON."""
     logger.info("Converting <ONNX to JSON> on model {}".format(input_path))
     import json
+
     try:
         from google.protobuf.json_format import MessageToJson
         from google.protobuf.json_format import Parse
