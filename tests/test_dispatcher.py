@@ -20,7 +20,7 @@ cmds = [
     'draw ./assets/tests/conv.float32.onnx draw.dot --type dot',
     'draw ./assets/tests/conv.float32.onnx draw.svg',
     'optimize ./assets/tests/conv.float32.onnx optimized.onnx',
-    'convert ./assets/tests/conv.float32.onnx converted.json --output_type onnx',
+    'convert ./assets/tests/conv.float32.onnx converted.json --output_type json',
 ]
 
 
