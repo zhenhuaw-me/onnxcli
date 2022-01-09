@@ -1,5 +1,6 @@
 import logging
 import os
+import onnx
 from onnxcli.common import SubCmd
 
 logger = logging.getLogger('onnxcli')
@@ -24,7 +25,6 @@ class OptimizeCmd(SubCmd):
 
     def run(self, args):
         logger.info("Running <Optimization> on model {}".format(args.input_path))
-        import onnx
         import onnxoptimizer
 
         if not os.path.exists(args.input_path):
