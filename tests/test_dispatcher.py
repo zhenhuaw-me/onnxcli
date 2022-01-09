@@ -23,10 +23,6 @@ cmds = [
     'convert ./assets/tests/conv.float32.onnx converted.json --output_type onnx',
 ]
 
-cmds = [
-    'convert ./assets/tests/conv.float32.onnx converted.json --output_type onnx',
-]
-
 
 def test_dispatch_core():
     for cmd in cmds:
