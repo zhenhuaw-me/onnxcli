@@ -96,7 +96,7 @@ class InspectCmd(SubCmd):
 
 
 def print_meta(m):
-    print("Meta information:")
+    print("Meta information")
     print("-" * 80)
     print("  IR Version: {}".format(m.ir_version))
     print("  Opset Import: {}".format(m.opset_import))
@@ -120,7 +120,7 @@ def print_basic(g):
 
 
 def print_tensor(g, indices, names, detail):
-    print("Tensor information:")
+    print("Tensor information")
     print("-" * 80)
 
     def print_value_info(t):
@@ -140,20 +140,20 @@ def print_tensor(g, indices, names, detail):
     # print with indices
     if len(indices) > 0:
         for idx in indices:
-            printed_any = False
-            if idx < len(g.value_info):
-                printed_any = True
-                print_value_info(g.value_info[idx])
+            tensor_name = None
             if idx < len(g.initializer):
                 print_initializer(g.initializer[idx], detail)
-                printed_any = True
-            if idx < len(g.input):
+                tensor_name = g.initializer[idx].name
+            if idx < len(g.value_info):
+                print_value_info(g.value_info[idx])
+                tensor_name = g.value_info[idx].name
+            if idx < len(g.input) and tensor_name and tensor_name != g.input[idx].name:
                 print_value_info(g.input[idx])
-                printed_any = True
-            if idx < len(g.output):
+                tensor_name = g.input[idx].name
+            if idx < len(g.output) and tensor_name and tensor_name != g.output[idx].name:
                 print_value_info(g.output[idx])
-                printed_any = True
-            if not printed_any:
+                tensor_name = g.output[idx].name
+            if not tensor_name:
                 raise ValueError(
                     "indice {} out of range, check the total size of tensors. "
                     "Note: some PyTorch exported models don't list tensors in GraphProto.value_info.".format(idx)
@@ -194,9 +194,17 @@ def print_tensor(g, indices, names, detail):
     for t in g.initializer:
         print_initializer(t, False)
 
+    tnames = {t.name for t in g.value_info}
+    for t in g.input:
+        if t.name not in tnames:
+            print_value_info(t)
+    for t in g.output:
+        if t.name not in tnames:
+            print_value_info(t)
+
 
 def print_nodes(g, indices, names, detail):
-    print("Node information:")
+    print("Node information")
     print("-" * 80)
 
     def print_node(n, detail):
