@@ -123,69 +123,19 @@ def print_tensor(g, indices, names, detail):
     print("Tensor information")
     print("-" * 80)
 
-    def print_value_info(t):
-        txt = "  ValueInfo \"{}\":".format(t.name)
-        txt += " type {},".format(dtype(t.type.tensor_type.elem_type))
-        txt += " shape {},".format(shape(t.type.tensor_type.shape))
-        print(txt)
-
-    def print_initializer(t, detail):
-        txt = "  Initializer \"{}\":".format(t.name)
-        txt += " type {},".format(dtype(t.data_type))
-        txt += " shape {},".format(t.dims)
-        print(txt)
-        if detail:
-            print("    float data: {}".format(t.float_data))
-
-    # print with indices
     if len(indices) > 0:
         for idx in indices:
-            tensor_name = None
-            if idx < len(g.initializer):
-                print_initializer(g.initializer[idx], detail)
-                tensor_name = g.initializer[idx].name
-            if idx < len(g.value_info):
-                print_value_info(g.value_info[idx])
-                tensor_name = g.value_info[idx].name
-            if idx < len(g.input) and tensor_name and tensor_name != g.input[idx].name:
-                print_value_info(g.input[idx])
-                tensor_name = g.input[idx].name
-            if idx < len(g.output) and tensor_name and tensor_name != g.output[idx].name:
-                print_value_info(g.output[idx])
-                tensor_name = g.output[idx].name
-            if not tensor_name:
-                raise ValueError(
-                    "indice {} out of range, check the total size of tensors. "
-                    "Note: some PyTorch exported models don't list tensors in GraphProto.value_info.".format(idx)
-                )
+            printed = print_tensor_with_indice(g, idx, detail)
+            if not printed:
+                raise ValueError("indice {} out of range".format(idx))
         return
 
     # print with names
     if len(names) > 0:
-        printed_any = False
         for name in names:
-            for i in g.value_info:
-                if i.name == name:
-                    print_value_info(i)
-                    printed_any = True
-                    break
-            for i in g.initializer:
-                if i.name == name:
-                    print_initializer(i, detail)
-                    printed_any = True
-                    break
-            for i in g.input:
-                if i.name == name:
-                    print_value_info(i)
-                    printed_any = True
-                    break
-            for i in g.output:
-                if i.name == name:
-                    print_value_info(i)
-                    printed_any = True
-                    break
-        if not printed_any:
-            raise ValueError("No tensor found with name {}".format(name))
+            printed = print_tensor_with_name(g, detail, name)
+            if not printed:
+                raise ValueError("No tensor found with name {}".format(name))
         return
 
     # print all tensors
@@ -194,6 +144,7 @@ def print_tensor(g, indices, names, detail):
     for t in g.initializer:
         print_initializer(t, False)
 
+    # inputs and outputs are not necessarity in GraphProto.value_info
     tnames = {t.name for t in g.value_info}
     for t in g.input:
         if t.name not in tnames:
@@ -201,6 +152,58 @@ def print_tensor(g, indices, names, detail):
     for t in g.output:
         if t.name not in tnames:
             print_value_info(t)
+
+
+def print_value_info(t):
+    txt = "  ValueInfo \"{}\":".format(t.name)
+    txt += " type {},".format(dtype(t.type.tensor_type.elem_type))
+    txt += " shape {},".format(shape(t.type.tensor_type.shape))
+    print(txt)
+
+
+def print_initializer(t, detail):
+    txt = "  Initializer \"{}\":".format(t.name)
+    txt += " type {},".format(dtype(t.data_type))
+    txt += " shape {},".format(t.dims)
+    print(txt)
+    if detail:
+        print("    float data: {}".format(t.float_data))
+
+
+def print_tensor_with_indice(g, idx, detail):
+    tensor_name = None
+    if idx < len(g.initializer):
+        print_initializer(g.initializer[idx], detail)
+        tensor_name = g.initializer[idx].name
+    if idx < len(g.value_info):
+        print_value_info(g.value_info[idx])
+        tensor_name = g.value_info[idx].name
+    if idx < len(g.input) and tensor_name and tensor_name != g.input[idx].name:
+        print_value_info(g.input[idx])
+        tensor_name = g.input[idx].name
+    if idx < len(g.output) and tensor_name and tensor_name != g.output[idx].name:
+        print_value_info(g.output[idx])
+        tensor_name = g.output[idx].name
+    return tensor_name != None
+
+
+def print_tensor_with_name(g, detail, name):
+    for i in g.value_info:
+        if i.name == name:
+            print_value_info(i)
+            return True
+    for i in g.initializer:
+        if i.name == name:
+            print_initializer(i, detail)
+            return True
+    for i in g.input:
+        if i.name == name:
+            print_value_info(i)
+            return True
+    for i in g.output:
+        if i.name == name:
+            print_value_info(i)
+            return True
 
 
 def print_nodes(g, indices, names, detail):
