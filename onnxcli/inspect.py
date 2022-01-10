@@ -92,7 +92,7 @@ class InspectCmd(SubCmd):
             printed_any = True
 
         if not printed_any:
-            print_basic(args, g)
+            print_basic(g)
 
 
 def print_meta(m):
