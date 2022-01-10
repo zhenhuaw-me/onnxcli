@@ -45,7 +45,7 @@ class ExtractCmd(SubCmd):
         try:
             onnx.checker.check_model(args.input_path)
         except Exception as e:
-            logger.warn("Input model invalid, the resulted model can be invalid too!\n {}".format(e))
+            logger.warning("Input model invalid, the resulted model can be invalid too!\n {}".format(e))
 
         model = onnx.load(args.input_path)
         e = Extractor(model)

@@ -132,3 +132,4 @@ dmypy.json
 *.onnx
 *.dot
 *.svg
+converted.json

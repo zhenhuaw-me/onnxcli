@@ -20,8 +20,8 @@ class DrawCmd(SubCmd):
     subcmd = 'draw'
 
     def add_args(self, subparser):
-        subparser.add_argument('input_path', type=str, help="The input ONNX model path")
-        subparser.add_argument('output_path', type=str, help="The output drawing graph path")
+        subparser.add_argument('input_path', type=str, help="The path to the input ONNX model")
+        subparser.add_argument('output_path', type=str, help="The path to the output drawing graph")
         subparser.add_argument(
             '-t',
             '--type',
