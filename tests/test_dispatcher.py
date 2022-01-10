@@ -10,17 +10,18 @@ logging.basicConfig(format=fmt, level=logging.DEBUG)
 logger = logging.getLogger('testing')
 
 cmds = [
-    'infershape ./assets/tests/conv.float32.onnx shape.onnx',
+    'convert ./assets/tests/conv.float32.onnx converted.json --output_type json',
+    'draw ./assets/tests/conv.float32.onnx draw.dot --type dot',
+    'draw ./assets/tests/conv.float32.onnx draw.svg',
     'extract ./assets/tests/conv.float32.onnx extract.onnx -i input -o output',
+    'infershape ./assets/tests/conv.float32.onnx shape.onnx',
     'inspect ./assets/tests/conv.float32.onnx --meta --node --tensor',
     'inspect ./assets/tests/conv.float32.onnx --node --indices 0 --detail',
     'inspect ./assets/tests/conv.float32.onnx --node --names output --detail',
     'inspect ./assets/tests/conv.float32.onnx --tensor --indices 0 --detail',
     'inspect ./assets/tests/conv.float32.onnx --tensor --names output --detail',
-    'draw ./assets/tests/conv.float32.onnx draw.dot --type dot',
-    'draw ./assets/tests/conv.float32.onnx draw.svg',
+    'inspect ./assets/tests/conv.float32.onnx',
     'optimize ./assets/tests/conv.float32.onnx optimized.onnx',
-    'convert ./assets/tests/conv.float32.onnx converted.json --output_type json',
 ]
 
 
