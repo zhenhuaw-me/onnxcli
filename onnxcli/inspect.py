@@ -16,7 +16,7 @@ class InspectCmd(SubCmd):
     subcmd = 'inspect'
 
     def add_args(self, subparser):
-        subparser.add_argument('input_path', type=str, help="The input ONNX model")
+        subparser.add_argument('input_path', type=str, help="The path to the input ONNX model")
         subparser.add_argument(
             '-m',
             '--meta',
@@ -41,7 +41,7 @@ class InspectCmd(SubCmd):
             type=int,
             nargs="+",
             default=[],
-            help="Specify the indices of the node(s) or tensor(s) to inspect." " Can NOT set together with --names",
+            help="Specify the indices of the node(s) or tensor(s) to inspect. Can NOT set together with --names",
         )
         subparser.add_argument(
             '-N',
@@ -49,7 +49,7 @@ class InspectCmd(SubCmd):
             type=str,
             nargs="+",
             default=[],
-            help="Specify the names of the node(s) or tensor(s) to inspect." " Can NOT set together with --indices",
+            help="Specify the names of the node(s) or tensor(s) to inspect. Can NOT set together with --indices",
         )
         subparser.add_argument(
             '-d',
@@ -74,7 +74,7 @@ class InspectCmd(SubCmd):
         try:
             onnx.checker.check_model(args.input_path)
         except Exception:
-            logger.warn("Failed to check model {}, statistic could be inaccurate!".format(args.input_path))
+            logger.warning("Failed to check model {}, statistic could be inaccurate!".format(args.input_path))
         m = onnx.load_model(args.input_path)
         g = m.graph
         printed_any = False
@@ -154,7 +154,10 @@ def print_tensor(g, indices, names, detail):
                 print_value_info(g.output[idx])
                 printed_any = True
             if not printed_any:
-                raise ValueError("indices {} out of range, check the total size of tensors")
+                raise ValueError(
+                    "indice {} out of range, check the total size of tensors. "
+                    "Note: some PyTorch exported models don't list tensors in GraphProto.value_info.".format(idx)
+                )
         return
 
     # print with names
