@@ -12,8 +12,8 @@ class OptimizeCmd(SubCmd):
     subcmd = 'optimize'
 
     def add_args(self, subparser):
-        subparser.add_argument('input_path', type=str, help="The input ONNX model")
-        subparser.add_argument('output_path', type=str, help="The output ONNX model")
+        subparser.add_argument('input_path', type=str, help="The path to the input ONNX model")
+        subparser.add_argument('output_path', type=str, help="The path to the output ONNX model")
         subparser.add_argument(
             '-p',
             '--passes',
@@ -31,7 +31,7 @@ class OptimizeCmd(SubCmd):
             raise ValueError("Invalid input model path: {}".format(args.input_path))
         if len(args.passes) == 0:
             passes = onnxoptimizer.get_available_passes()
-            logger.warn("No optimization passes specified, running all available passes: {}".format(passes))
+            logger.warning("No optimization passes specified, running all available passes: {}".format(passes))
         else:
             passes = args.passes
             logger.info("Running with passes: {}".format(passes))
