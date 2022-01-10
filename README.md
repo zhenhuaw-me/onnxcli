@@ -7,8 +7,8 @@ ONNX Command Line Toolbox
 [![Coverage](https://codecov.io/gh/jackwish/onnxcli/branch/master/graph/badge.svg)](https://codecov.io/gh/jackwish/onnxcli)
 
 
-* Aims to improve your experience of investigating ONNX models.
-* Use it like `onnx infershape /path/to/model.onnx`. (See the [usage section](#usage) for more.)
+* Aim to improve your experience of investigating ONNX models.
+* Use it like `onnx infershape /path/to/input/model.onnx /path/to/output/model.onnx`. (See the [usage section](#usage).)
 
 
 ## Installation
@@ -20,23 +20,27 @@ pip install git+https://github.com/jackwish/onnxcli.git
 
 _Two alternative ways are:_
 1. Install via [pypi package][pypi] `pip install onnxcli`
-2. Download and add the code tree to your `$PYTHONPATH`. This is for development purpose since the command line is different.
+2. Download and add the code tree to your `$PYTHONPATH`. (For development purpose and the command line is different.）
     ```
     git clone https://github.com/jackwish/onnxcli.git
     export PYTHONPATH=$(pwd)/onnxcli:${PYTHONPATH}
-    python onnxcli/cli/dispatcher.py <more args>
+    python onnxcli/cli/dispatcher.py <sub command> <more args...>
     ```
 
-The [`onnx draw`](#draw) requires [`dot` command (graphviz)](https://graphviz.org/) to be avaiable on your machine - which can be installed by command as below on Ubuntu/Debian.
-```
-sudo apt install -y graphviz
-```
+**Requirements**
+
+`onnxcli` depends on different packages w.r.t. different functionality and may extend.
+However, we only include only several basic ones (`onnx` for example) since you may use only a small portion of the functionalities, or you may like have a different version.
+
+Depending on the sub command, error will be raised if the requirements are not met.
+Follow the error message to install the requirements.
 
 
 ## Usage
 
-Once installed, the `onnx` and `onnxcli` commands are avaiable on your machine.
-You can play with commands such as `onnx infershape /path/to/model.onnx`.
+Once installed, the `onnx` and `onnxcli` commands are avaiable.
+You can play with commands such as `onnx infershape /path/to/input/model.onnx /path/to/output/model.onnx`.
+
 The general format is `onnx <sub command> <dedicated arguments ...>`.
 The sub commands are as sections below.
 
@@ -141,6 +145,11 @@ Here is a Convolution node example.
 
 ![conv](assets/conv.svg)
 
+**Note**: The [`onnx draw`](#draw) requires [`dot` command (graphviz)](https://graphviz.org/) to be avaiable on your machine - which can be installed by command as below on Ubuntu/Debian.
+```
+sudo apt install -y graphviz
+```
+
 ### optimize
 
 `onnx optimize` optimizes the input model with [ONNX Optimizer](https://github.com/onnx/optimizer).
@@ -153,16 +162,16 @@ Let's make our life easier together.
 
 The workflow is pretty simple:
 1. Starting with GitHub Codespace or clone locally.
-  * `make setup` to config the dependencies (or `pip install -r ./requirements.txt` if you prefer).
+  a. `make setup` to config the dependencies (or `pip install -r ./requirements.txt` if you prefer).
 2. Create a new subcommand
-  * Starting by copying and modifying [infershape](./onnxcli/infer_shape.py).
-  * Register the command in the [dispatcher](./onnxcli/dispatcher.py)
-  * Create a new command line [test](./tests/test_dispatcher.py)
-  * `make test` to build and test.
-  * `make check` and `make format` to fix any code style issues.
+  a. Starting by copying and modifying [infershape](./onnxcli/infer_shape.py).
+  b. Register the command in the [dispatcher](./onnxcli/dispatcher.py)
+  c. Create a new command line [test](./tests/test_dispatcher.py)
+  d. `make test` to build and test.
+  e. `make check` and `make format` to fix any code style issues.
 3. Try out, debug, commit, push, and open pull request.
-  * The code has been protected by CI. You need to get a pass before merging.
-  * Ask if any questions.
+  a. The code has been protected by CI. You need to get a pass before merging.
+  b. Ask if any questions.
 
 
 ## License
