@@ -184,7 +184,7 @@ def print_tensor_with_indice(g, idx, detail):
     if idx < len(g.output) and tensor_name and tensor_name != g.output[idx].name:
         print_value_info(g.output[idx])
         tensor_name = g.output[idx].name
-    return tensor_name != None
+    return tensor_name is not None
 
 
 def print_tensor_with_name(g, detail, name):
