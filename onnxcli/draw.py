@@ -69,28 +69,45 @@ class DrawCmd(SubCmd):
         m = onnx.load_model(input_path)
         dot_str = "digraph onnxcli {\n"
 
+        # Keep track of the original tensor names.
+        # Many tensors are not recorded in graph.value_info, thus we need to generate edge for them specially.
+        tensor_names = set()
+
         # nodes
         for node in m.graph.node:
             nname = fixname(node.name)
             nkey = node_key(node.name)
             dot_str += '"{}" [label="{}\\n<{}>" fonstsize=16 shape=oval];\n'.format(nkey, nname, node.op_type)
             for iname in node.input:
+                tensor_names.add(iname)
                 dot_str += '  "{}" -> "{}";\n'.format(tensor_key(iname), nkey)
             for oname in node.output:
+                tensor_names.add(oname)
                 dot_str += '  "{}" -> "{}";\n'.format(nkey, tensor_key(oname))
 
         # tensors
         for tensor in m.graph.initializer:
+            tensor_names.remove(tensor.name)
             dot_str += '"{}" [label="{}\\n{}, {}" fonstsize=10 style=rounded shape=rectangle];\n'.format(
                 tensor_key(tensor.name), fixname(tensor.name), dtype(tensor.data_type), tensor.dims
             )
-        for tensor in m.graph.value_info:
-            dot_str += '"{}" [label="{}\\n{}, {}" fonstsize=10 shape=rectangle];\n'.format(
-                tensor_key(tensor.name),
-                fixname(tensor.name),
-                dtype(tensor.type.tensor_type.elem_type),
-                shape(tensor.type.tensor_type.shape),
-            )
+        all_value_info = list(m.graph.value_info) + list(m.graph.input) + list(m.graph.output)
+        for tensor in all_value_info:
+            if tensor.name in tensor_names:
+                tensor_names.remove(tensor.name)
+                dot_str += '"{}" [label="{}\\n{}, {}" fonstsize=10 shape=rectangle];\n'.format(
+                    tensor_key(tensor.name),
+                    fixname(tensor.name),
+                    dtype(tensor.type.tensor_type.elem_type),
+                    shape(tensor.type.tensor_type.shape),
+                )
+
+        if len(tensor_names) != 0:
+            # the tensors that are not in graph.initializer nor graph.value_info
+            # i.e. they only have names
+            logger.warning("There are tensors that only have name in the graph. Suggest to run with `onnx infershape`.")
+            for tname in tensor_names:
+                dot_str += '"{}" [label="{}" fonstsize=10 shape=rectangle];\n'.format(tensor_key(tname), fixname(tname))
 
         dot_str += "}\n"
         return dot_str
