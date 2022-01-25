@@ -51,4 +51,7 @@ def dtype(Key):
 
 
 def shape(ShapeProto):
-    return [d.dim_value for d in ShapeProto.dim]
+    def not_empty_str(s):
+        return s is not None and len(s) != 0
+
+    return [d.dim_param if not_empty_str(d.dim_param) else d.dim_value for d in ShapeProto.dim]
