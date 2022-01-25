@@ -1,6 +1,3 @@
-from operator import not_
-
-
 class SubCmd:
     subcmd = None
 
