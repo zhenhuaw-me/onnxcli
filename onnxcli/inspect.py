@@ -36,6 +36,12 @@ class InspectCmd(SubCmd):
             help="Print the tensor information of the model",
         )
         subparser.add_argument(
+            '-io',
+            '--io',
+            action='store_true',
+            help="Print the input and output tensor information of the model",
+        )
+        subparser.add_argument(
             '-i',
             '--indices',
             type=int,
@@ -91,6 +97,10 @@ class InspectCmd(SubCmd):
             print_tensor(g, args.indices, args.names, args.detail)
             printed_any = True
 
+        if args.io:
+            print_io(g)
+            printed_any = True
+
         if not printed_any:
             print_basic(g)
 
@@ -144,14 +154,16 @@ def print_tensor(g, indices, names, detail):
     for t in g.initializer:
         print_initializer(t, False)
 
-    # inputs and outputs are not necessarity in GraphProto.value_info
-    tnames = {t.name for t in g.value_info}
+
+def print_io(g):
+    print("Input information")
+    print("-" * 80)
     for t in g.input:
-        if t.name not in tnames:
-            print_value_info(t)
+        print_value_info(t)
+    print("Output information")
+    print("-" * 80)
     for t in g.output:
-        if t.name not in tnames:
-            print_value_info(t)
+        print_value_info(t)
 
 
 def print_value_info(t):
@@ -178,12 +190,6 @@ def print_tensor_with_indice(g, idx, detail):
     if idx < len(g.value_info):
         print_value_info(g.value_info[idx])
         tensor_name = g.value_info[idx].name
-    if idx < len(g.input) and tensor_name and tensor_name != g.input[idx].name:
-        print_value_info(g.input[idx])
-        tensor_name = g.input[idx].name
-    if idx < len(g.output) and tensor_name and tensor_name != g.output[idx].name:
-        print_value_info(g.output[idx])
-        tensor_name = g.output[idx].name
     return tensor_name is not None
 
 
