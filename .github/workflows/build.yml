@@ -25,10 +25,11 @@ jobs:
     - name: Install package
       run: pip install -U assets/dist/onnxcli-*.whl
 
-    - name: Install development dependencies
+    - name: Install dependencies
       run: |
         sudo apt update
         sudo apt install -y graphviz
+	      pip install coverage
         onnx setup
 
     - name: Testing (collecting coverage data)
