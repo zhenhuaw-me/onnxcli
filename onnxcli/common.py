@@ -1,9 +1,6 @@
 class SubCmd:
     subcmd = None
 
-    # Python packages that are dependented by the subcommand.
-    pkgs = []
-
     def __init__(self, subparsers):
         if self.subcmd is None:
             raise RuntimeError("subcmd must be provided!")

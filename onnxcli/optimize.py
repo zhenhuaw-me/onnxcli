@@ -10,7 +10,6 @@ class OptimizeCmd(SubCmd):
     """Optimize given ONNX model."""
 
     subcmd = 'optimize'
-    pkgs = ['onnxoptimizer']
 
     def add_args(self, subparser):
         subparser.add_argument('input_path', type=str, help="The path to the input ONNX model")

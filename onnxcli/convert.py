@@ -10,7 +10,6 @@ class ConvertCmd(SubCmd):
     """Convert the given model to or from ONNX."""
 
     subcmd = 'convert'
-    pkgs = ['protobuf']
 
     def add_args(self, subparser):
         subparser.add_argument('input_path', type=str, help="The path to the input model")
