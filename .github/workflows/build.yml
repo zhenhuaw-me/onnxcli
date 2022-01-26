@@ -27,9 +27,9 @@ jobs:
 
     - name: Install development dependencies
       run: |
-        pip install -r requirements.txt
         sudo apt update
         sudo apt install -y graphviz
+        onnx setup
 
     - name: Testing (collecting coverage data)
       run: coverage run --source=./onnxcli -m pytest

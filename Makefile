@@ -9,6 +9,7 @@ build: clean
 	-rm -rf ./build
 
 test: install
+	onnx setup
 	python3 ./tests/test_dispatcher.py
 
 check:
