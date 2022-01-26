@@ -29,8 +29,7 @@ jobs:
       run: |
         sudo apt update
         sudo apt install -y graphviz
-	pip install coverage
-        onnx setup
+				pip install coverage
 
     - name: Testing (collecting coverage data)
       run: coverage run --source=./onnxcli -m pytest
