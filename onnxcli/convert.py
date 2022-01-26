@@ -42,7 +42,7 @@ def onnx2json(input_path, output_path):
     try:
         from google.protobuf.json_format import MessageToJson
     except ImportError as err:
-        logger.error("Failed to import google.protobuf.json_format. Please install protobuf.")
+        logger.error("Failed to import protobuf. Try to fix with `onnx setup`.")
         raise err
 
     m = onnx.load(input_path)

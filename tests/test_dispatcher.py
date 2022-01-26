@@ -23,6 +23,8 @@ cmds = [
     'inspect ./assets/tests/conv.float32.onnx --io',
     'inspect ./assets/tests/conv.float32.onnx',
     'optimize ./assets/tests/conv.float32.onnx optimized.onnx',
+    'setup',
+    'setup --list',
 ]
 
 

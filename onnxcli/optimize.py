@@ -25,7 +25,11 @@ class OptimizeCmd(SubCmd):
 
     def run(self, args):
         logger.info("Running <Optimization> on model {}".format(args.input_path))
-        import onnxoptimizer
+        try:
+            import onnxoptimizer
+        except ImportError as err:
+            logger.error("Failed to import. Try to fix with `onnx setup`.")
+            raise err
 
         if not os.path.exists(args.input_path):
             raise ValueError("Invalid input model path: {}".format(args.input_path))
