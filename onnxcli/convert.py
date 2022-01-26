@@ -10,6 +10,7 @@ class ConvertCmd(SubCmd):
     """Convert the given model to or from ONNX."""
 
     subcmd = 'convert'
+    pkgs = ['protobuf']
 
     def add_args(self, subparser):
         subparser.add_argument('input_path', type=str, help="The path to the input model")
@@ -42,7 +43,7 @@ def onnx2json(input_path, output_path):
     try:
         from google.protobuf.json_format import MessageToJson
     except ImportError as err:
-        logger.error("Failed to import google.protobuf.json_format. Please install protobuf.")
+        logger.error("Failed to import protobuf. Try to fix with `onnx setup`.")
         raise err
 
     m = onnx.load(input_path)
