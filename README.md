@@ -161,17 +161,20 @@ Welcome to contribute new commands or enhance them.
 Let's make our life easier together.
 
 The workflow is pretty simple:
+
 1. Starting with GitHub Codespace or clone locally.
-  a. `make setup` to config the dependencies (or `pip install -r ./requirements.txt` if you prefer).
+  1. `make setup` to config the dependencies (or `pip install -r ./requirements.txt` if you prefer).
+
 2. Create a new subcommand
-  a. Starting by copying and modifying [infershape](./onnxcli/infer_shape.py).
-  b. Register the command in the [dispatcher](./onnxcli/dispatcher.py)
-  c. Create a new command line [test](./tests/test_dispatcher.py)
-  d. `make test` to build and test.
-  e. `make check` and `make format` to fix any code style issues.
+   1. Starting by copying and modifying [infershape](./onnxcli/infer_shape.py).
+   2. Register the command in the [dispatcher](./onnxcli/dispatcher.py)
+   3. Create a new command line [test](./tests/test_dispatcher.py)
+   4. `make test` to build and test.
+   5. `make check` and `make format` to fix any code style issues.
+
 3. Try out, debug, commit, push, and open pull request.
-  a. The code has been protected by CI. You need to get a pass before merging.
-  b. Ask if any questions.
+   1. The code has been protected by CI. You need to get a pass before merging.
+   2. Ask if any questions.
 
 
 ## License

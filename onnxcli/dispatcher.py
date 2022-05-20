@@ -5,6 +5,7 @@ import logging
 import sys
 
 from onnxcli import __doc__ as DESCRIPTION
+from onnxcli.check import CheckCmd
 from onnxcli.convert import ConvertCmd
 from onnxcli.draw import DrawCmd
 from onnxcli.extract import ExtractCmd
@@ -26,6 +27,7 @@ def dispatch_core(*raw_args):
     parser = argparse.ArgumentParser(description=DESCRIPTION)
     subparsers = parser.add_subparsers(title='subcommands')
 
+    CheckCmd(subparsers)
     ConvertCmd(subparsers)
     DrawCmd(subparsers)
     ExtractCmd(subparsers)
