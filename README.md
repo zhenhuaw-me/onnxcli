@@ -4,7 +4,7 @@ ONNX Command Line Toolbox
 [![Build and Test](https://github.com/zhenhuaw-me/onnxcli/workflows/Build%20and%20Test/badge.svg)](https://github.com/zhenhuaw-me/onnxcli/actions/workflows/build.yml)
 [![CodeQL](https://github.com/zhenhuaw-me/onnxcli/workflows/CodeQL/badge.svg)](https://github.com/zhenhuaw-me/onnxcli/actions/workflows/codeql-analysis.yml)
 [![Sanity](https://github.com/zhenhuaw-me/onnxcli/workflows/Sanity/badge.svg)](https://github.com/zhenhuaw-me/onnxcli/actions/workflows/sanity.yml)
-[![Coverage](https://codecov.io/gh/jackwish/onnxcli/branch/master/graph/badge.svg)](https://codecov.io/gh/jackwish/onnxcli)
+[![Coverage](https://codecov.io/gh/zhenhuaw-me/onnxcli/branch/master/graph/badge.svg)](https://codecov.io/gh/zhenhuaw-me/onnxcli)
 
 
 * Aim to improve your experience of investigating ONNX models.
