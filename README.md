@@ -22,7 +22,7 @@ _Two alternative ways are:_
 1. Install via [pypi package][pypi] `pip install onnxcli`
 2. Download and add the code tree to your `$PYTHONPATH`. (For development purpose and the command line is different.）
     ```
-    git clone https://github.com/jackwish/onnxcli.git
+    git clone https://github.com/zhenhuaw-me/onnxcli.git
     export PYTHONPATH=$(pwd)/onnxcli:${PYTHONPATH}
     python onnxcli/cli/dispatcher.py <sub command> <more args...>
     ```
@@ -183,4 +183,4 @@ Apache License Version 2.0.
 
 
 [pypi]: https://pypi.org/project/onnxcli
-[github]: https://github.com/jackwish/onnxcli
+[github]: https://github.com/zhenhuaw-me/onnxcli
