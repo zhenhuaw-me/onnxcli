@@ -16,7 +16,7 @@ class SetupCmd(SubCmd):
     def run(self, args):
         logger.info("Running <Package Setup>")
 
-        pkgs = ['onnxoptimizer', 'protobuf']
+        pkgs = ['onnxoptimizer==0.2.7', 'protobuf']
 
         if args.list:
             print("Dependent packages:")
