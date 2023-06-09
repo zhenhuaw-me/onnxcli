@@ -179,7 +179,10 @@ def print_initializer(t, detail):
     txt += " shape {},".format(t.dims)
     print(txt)
     if detail:
-        print("    float data: {}".format(t.float_data))
+        import numpy as np
+        import onnx.numpy_helper as nphelper
+        data = np.array(nphelper.to_array(t)).reshape(t.dims)
+        print("    data in numpy format: \n{}".format(data))
 
 
 def print_tensor_with_indice(g, idx, detail):
