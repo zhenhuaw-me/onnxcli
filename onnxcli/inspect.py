@@ -177,10 +177,13 @@ def print_initializer(t, detail):
     txt = "  Initializer \"{}\":".format(t.name)
     txt += " type {},".format(dtype(t.data_type))
     txt += " shape {},".format(t.dims)
+    txt += " data_location {},".format(t.data_location)
+    txt += " external_data {},".format(t.external_data)
     print(txt)
     if detail:
         import numpy as np
         import onnx.numpy_helper as nphelper
+
         data = np.array(nphelper.to_array(t)).reshape(t.dims)
         print("    data in numpy format: \n{}".format(data))
 
