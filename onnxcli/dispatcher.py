@@ -6,6 +6,7 @@ import sys
 
 from onnxcli import __doc__ as DESCRIPTION
 from onnxcli.check import CheckCmd
+from onnxcli.compare import CompareCmd
 from onnxcli.convert import ConvertCmd
 from onnxcli.draw import DrawCmd
 from onnxcli.extract import ExtractCmd
@@ -28,6 +29,7 @@ def dispatch_core(*raw_args):
     subparsers = parser.add_subparsers(title='subcommands')
 
     CheckCmd(subparsers)
+    CompareCmd(subparsers)
     ConvertCmd(subparsers)
     DrawCmd(subparsers)
     ExtractCmd(subparsers)
